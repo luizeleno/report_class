@@ -47,6 +47,7 @@ class turma:
 			Argumentos:
 				* prova: string - coluna escolhida para o report. Deve ser uma coluna previamente usada pelo comando create_histogram
 				* papersize: string - um dos formatos de papersize aceitos pelo pacote geometry (default: a4paper).
+				* landscape: bool - página em landscape (default: True)
 				
 	* Exemplo de aplicação:
 	
@@ -207,7 +208,7 @@ class turma:
 		figfile = figfile.replace(" ", "_")
 		plt.savefig(figfile,bbox_inches='tight')
 		
-	def create_latex_report(self, prova, papersize='a4paper'):
+	def create_latex_report(self, prova, papersize='a4paper', landscape=True):
 		'''
 			create_latex_report: cria o relatório em pdf, juntando tabela + histograma. Exije o uso prévio das rotinas acima
 
@@ -220,7 +221,10 @@ class turma:
 		f.write('\\documentclass[12pt]{article}\n\n')
 		#f.write('\\usepackage[bitstream-charter]{mathdesign}\n')
 		f.write('\\usepackage{mathpazo}\n')
-		f.write('\\usepackage[%s, landscape, margin=10mm]{geometry}\n' % papersize)
+		if landscape:
+			f.write('\\usepackage[%s, landscape, margin=10mm]{geometry}\n' % papersize)
+		else:
+			f.write('\\usepackage[%s, margin=10mm]{geometry}\n' % papersize)
 		f.write('\\usepackage[utf8]{inputenc}\n')
 		f.write('\\usepackage[table]{xcolor}\n')
 		f.write('\\usepackage{icomma}\n')

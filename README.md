@@ -41,6 +41,7 @@ Escola de Engenharia de Lorena da USP
 * Argumentos:
   * `prova`: string - coluna escolhida para o relatório. Deve ser uma coluna previamente usada pelo comando create_histogram
   * `papersize`: string - um dos formatos de papersize aceitos pelo pacote geometry (default: a4paper).
+  * `landscape`: bool - página em landscape (default: True)
                 
 ### Exemplo de aplicação:
     
