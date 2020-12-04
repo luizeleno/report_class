@@ -1,56 +1,28 @@
-## class turma()
+# `report_class`
 
-Cria um relatório de notas com base numa planilha eletrônica (e.g., excel)
+## Classe em python3 para gerar relatório de notas de alguma turma
 
-Prof. Luiz T. F. Eleno
-Escola de Engenharia de Lorena da USP
-[sites.usp.br/computeel](https://sites.usp.br/computeel)
+**Otimizado para cursos da USP usando a "Lista de Apoio ao Docente" do Sistema Júpiter**
 
-* Argumentos de inicialização:
-  * `planilha`: string - planilha com as notas. Necessariamente deve conter as colunas 'Código' (com os NUSP) e 'Nome'
-  * `aba`: int/string - aba com as notas (padrão: 0, ou seja, a primeira aba)
-  * `sr` (skiprows): int - linhas a serem ignoradas no começo da planilha
-  * `print_nomes`: bool - imprimir ou não o nome dos alunos (padrão: `False`)
-  * `disciplina`: string
-  * `ano`: int
-  * `semestre`: int
+---
 
-### Rotinas para gera o conteúdo do relatório:
+### Exemplo de uso
 
-#### create_histogram: cria um pdf com um histograma da coluna fornecidas
+Formato da planilha: as notas da disciplina _LOM3260_, do 2º semestre de 2020, estão na primeira aba de uma planilha chamada `Notas.xlsx`, que tem as colunas `P1`, `P2`, `NF` e `Freq`. As cinco primeiras linhas da planilha devem ser ignoradas. Necessariamente, a planilha deve conter também as colunas `Código` e `Nome`.
 
-* Argumentos:
-  * `prova`: string - coluna usada para produzir o histograma
-  * `ymax`: float - máximo valor da ordenada do gráfico
-  * `create_table`: produz uma tabela com as colunas da planilha fornecidas como argumento
+Você quer criar um relatório contendo uma tabela com todas as colunas, sem mostrar os nomes dos alunos, apenas seus códigos (NUSP). Você quer também um histograma da coluna `NF`. Use então o código abaixo:
 
-#### create_table: produz uma tabela com as colunas da planilha fornecidas como argumento
-
-* Argumentos:
-  * `strings` - nomes das colunas da planilha que se deseja reproduzir
-
-### Rotinas para formatar e gerar o relatório:
-
-#### create_cabecalho: formata o cabeçalho do relatório 
-
-* Argumento:
-  * `titulo`: string
-        
-#### create_latex_report: cria o relatório em pdf, juntando tabela + histograma. Exije o uso prévio das rotinas acima
-
-* Argumentos:
-  * `prova`: string - coluna escolhida para o relatório. Deve ser uma coluna previamente usada pelo comando create_histogram
-  * `papersize`: string - um dos formatos de papersize aceitos pelo pacote geometry (default: a4paper).
-  * `landscape`: bool - página em landscape (default: True)
-                
-### Exemplo de aplicação:
-    
 ```python
 import report_class
 
-turma = report_class.turma('Notas.xls', aba=1, disciplina='LOM3213', sr=3)
-turma.create_table('Nota P2', 'Trabalho', 'Lista 2', 'Lista 4', 'Bonus', 'Prova 2') 
-turma.create_histogram('Prova 2', ymax=10.5)
-turma.create_cabecalho('Resultado da P2')
-turma.create_latex_report('Prova 2', papersize='a3paper')
+turma = report_class.turma('Notas.xlsx', sr=5, print_nomes=False, aba=0,
+                            disciplina='LOM3260', semestre=2, ano=2020)
+
+turma.create_table('P1', 'P2', 'NF', 'Freq')
+turma.create_cabecalho('Resultado final')
+
+turma.create_histogram('NF')
+turma.create_latex_report('NF', landscape=False)
 ```
+
+O resultado será um arquivo $\LaTeX$ chamado `report-NF.tex`, que deve ser processado manualmente para gerar o relatório final (se quiser rodar o $\LaTeX$ automaticamente para gerar um arquivo pdf, use a opção `runlatex=True` na última linha).
