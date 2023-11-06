@@ -17,3 +17,5 @@ import matplotlib.pyplot as plt
 x = np.arange(0, 2*np.pi, 0.01)
 y = np.sin(x)
 ```
+
+![Gráfico da função seno](grafico-seno-e-cosseno.webp)
