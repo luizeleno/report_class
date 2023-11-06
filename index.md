@@ -9,3 +9,11 @@
 1. precisa de python instalado
 2. precisa de LaTeX instalado
 3. recomenda-se usar o VScode
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(0, 2*np.pi, 0.01)
+y = np.sin(x)
+```
