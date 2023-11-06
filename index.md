@@ -2,6 +2,8 @@
 
 ## Classe de geração de relatórios de notas
 
+Acesso o [site do Demar](https://www.demar.eel.usp.br/)
+
 * Cria a partir de planilha **excel**
 * gera arquivo *LaTeX*
 * pode rodar o latex, desde que instalado
