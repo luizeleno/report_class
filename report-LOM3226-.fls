@@ -286,6 +286,11 @@ INPUT hist-P1.pdf
 INPUT ./hist-P1.pdf
 OUTPUT report-LOM3226-.pdf
 INPUT ./hist-P1.pdf
+INPUT ./hist-P2.pdf
+INPUT ./hist-P2.pdf
+INPUT hist-P2.pdf
+INPUT ./hist-P2.pdf
+INPUT ./hist-P2.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
